@@ -12,7 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
 import { NombreApellidoPipe } from './pipes/nombre-apellido.pipe';
 import { BooleanEstiloDirective } from './directive/boolean-estilo.directive';
-import { FormularioAltaAlumnoComponent } from './components/formulario-alta-alumno/formulario-alta-alumno.component';
+import { FormularioAltaAlumnoComponent } from './component/formulario-alta-alumno/formulario-alta-alumno.component';
 import { ListaCursosComponent } from './component/lista-cursos/lista-cursos.component';
 
 @NgModule({
