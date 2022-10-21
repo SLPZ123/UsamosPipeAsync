@@ -1,0 +1,39 @@
+<h1>Formulario Reactivo con Validaciones hecho con Bootstrap</h1>
+
+<form [formGroup]="formularioUsuario" (ngSubmit)="agregarUsuario()">
+    <div class="form-group">
+        <label for="">Nombre:</label>
+        <input type="text" class="form-control" placeholder="Ingrese su nombre" formControlName="nombre">
+        <b *ngIf="formularioUsuario.get('nombre')?.touched && formularioUsuario.get('nombre')?.errors?.['required']">El campo nombre es requerido</b>
+    </div>
+    <br>
+    <div class="form-group">
+        <label for="">Correo:</label>
+        <input type="text" class="form-control" placeholder="Ingrese su correo" formControlName="correo">
+        <b *ngIf="formularioUsuario.get('correo')?.touched && formularioUsuario.get('correo')?.errors?.['required']">El campo correo es requerido</b>
+        <b *ngIf="formularioUsuario.get('correo')?.touched && formularioUsuario.get('correo')?.errors?.['pattern']">El formato del correo no es correcto</b>
+    </div>
+    <br>
+    <div class="form-group" >
+        <label for="">Contraseña:</label>
+        <input type="password" class="form-control" placeholder="Ingrese su contraseña" formControlName="contrasena">
+        <b *ngIf="formularioUsuario.get('contrasena')?.touched && formularioUsuario.get('contrasena')?.errors?.['required']">El campo contrasena es requerido</b>
+        <b *ngIf="formularioUsuario.get('contrasena')?.touched && formularioUsuario.get('contrasena')?.errors?.['minlength']">La contrasena debe tener al menos 5 caracteres</b>
+        <b *ngIf="formularioUsuario.get('contrasena')?.touched && formularioUsuario.get('contrasena')?.errors?.['pattern']">La contrasena debe tener al menos una mayuscula</b>
+    </div>
+    <br>
+    <div class="form-group">
+        <label for="">Confirmar contrasena:</label>
+        <input type="password" class="form-control" placeholder="Confirme su contraseña" formControlName="contrasena2">
+        <b *ngIf="formularioUsuario.get('contrasena2')?.touched && formularioUsuario.get('contrasena2')?.errors?.['required']">El campo contrasena es requerido</b>
+        <b *ngIf="formularioUsuario.get('contrasena2')?.touched && formularioUsuario.get('contrasena2')?.errors?.['minlength']">La contrasena debe tener al menos 5 caracteres</b>
+        <p *ngIf="!contrasenasIguales">Las contrasenas deben ser iguales</p>
+    </div>
+    <br>
+    <div class="form-group">
+        <label for="">Admin:</label>
+        <input type="checkbox" class="form-check-input" formControlName="admin">
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary" [disabled]="formularioUsuario.invalid">Agregar usuario</button>
+</form>

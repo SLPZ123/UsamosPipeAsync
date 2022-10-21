@@ -1,0 +1,46 @@
+<h1>Formulario para dar de alta alumno</h1>
+
+<form [formGroup]="formularioAlumno" (ngSubmit)="agregarAlumno()">
+    <div class="form-group">
+        <label for="">Nombre:</label>
+        <input type="text" class="form-control" placeholder="Ingrese su nombre" formControlName="nombre">
+        <b *ngIf="formularioAlumno.get('nombre')?.touched && formularioAlumno.get('nombre')?.errors?.['required']">El campo nombre es requerido</b>
+    </div>
+    <br>
+    <div class="form-group">
+        <label for="">Apellido:</label>
+        <input type="text" class="form-control" placeholder="Ingrese su apellido" formControlName="apellido">
+        <b *ngIf="formularioAlumno.get('apellido')?.touched && formularioAlumno.get('apellido')?.errors?.['required']">El campo apellido es requerido</b>
+    </div>
+    <br>
+    <div class="form-group" >
+        <label for="">Curso:</label>
+        <select class="form-select"
+          (change)="cambiarCurso($event)"
+          formControlName="curso"
+          
+        >
+        <option [ngValue]="null" disabled selected>Selecciona el curso</option>
+          <option *ngFor="let curso of cursos" [ngValue]="curso">
+            {{ curso }}
+          </option>
+        </select>
+        <b *ngIf="formularioAlumno.get('curso')?.touched && formularioAlumno.get('curso')?.errors?.['required']">El campo curso es requerido</b>
+    </div>
+    <br>
+    <div class="form-group">
+        <label for="">Edad:</label>
+        <input type="text" class="form-control" placeholder="Ingrese su edad" formControlName="edad" maxlength="2">
+        <b *ngIf="formularioAlumno.get('edad')?.touched && formularioAlumno.get('edad')?.errors?.['required']">El campo edad es requerido!</b>
+        <b *ngIf="formularioAlumno.get('edad')?.touched && formularioAlumno.get('edad')?.errors?.['pattern']">Solo se aceptan valores numericos.</b>
+    </div>
+    <br>
+    <div class="form-group">
+        <label for="">Dni:</label>
+        <input type="text" class="form-control" placeholder="Ingrese su DNI" formControlName="dni" maxlength="9">
+        <b *ngIf="formularioAlumno.get('dni')?.touched && formularioAlumno.get('dni')?.errors?.['required']">El campo DNI es requerido!</b>
+        <b *ngIf="formularioAlumno.get('dni')?.touched && formularioAlumno.get('dni')?.errors?.['pattern']">Solo se aceptan valores numericos.</b>
+    </div>
+    <br>
+    <button type="submit" class="btn btn-primary" [disabled]="formularioAlumno.invalid">Agregar Alumno</button>
+</form>
